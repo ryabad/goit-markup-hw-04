@@ -144,7 +144,7 @@ a {
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: 0.02em;
-  color: var(--highest-color);
+  color: var(--effect-second-color);
   padding-top: 24px;
   padding-bottom: 24px;
   transition: color var(--main-transition);
@@ -158,10 +158,10 @@ a {
   content: "";
   position: absolute;
   width: 100%;
-  height: 2px;
+  height: 4px;
   background-color: var(--effect-second-color);
   border-radius: 2px;
-  bottom: 0;
+  bottom: -1px;
   left: 0;
 }
 
@@ -192,6 +192,7 @@ a {
     url(../images/people-office.jpg);
   background-position: center;
   background-size: cover;
+  background-repeat: no-repeat;
   padding-top: 188px;
   padding-bottom: 188px;
   margin: 0 auto;
@@ -244,13 +245,13 @@ a {
 }
 
 .benefits-item-block {
-  max-width: 264px;
-  padding-top: 24px;
-  padding-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 122px;
   background-color: var(--effect-main-color);
   border-radius: 4px;
   margin-bottom: 8px;
-  text-align: center;
 }
 
 .benefits-subtitle,
@@ -320,7 +321,8 @@ a {
 }
 
 .person-container {
-  padding: 32px 16px;
+  padding-top: 32px;
+  padding-bottom: 32px;
 }
 
 .soc-icon-container {
@@ -329,13 +331,21 @@ a {
 
 .soc-menu {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
   gap: 24px;
 }
 
-.soc-link-item {
+.soc-menu-list {
   width: 40px;
   height: 40px;
+}
+
+.soc-link-item {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
   padding: 12px;
   background-color: var(--logo-color);
   border-radius: 50%;
@@ -354,33 +364,35 @@ a {
 }
 
 .customers-menu {
-  max-width: 100%;
   display: flex;
   justify-content: center;
-  text-align: center;
   gap: 24px;
 }
 
+.customer-item {
+  width: calc((100% - 120px) / 6);
+  height: 88px;
+}
+
 .customers-item-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 16px 32px;
   border: 1px solid var(--second-border-color);
   border-radius: 4px;
-  transition: border var(--main-transition);
+  color: var(--second-border-color);
+  transition: border-color var(--main-transition), color var(--main-transition);
 }
 
-.customers-item-link svg {
-  fill: var(--second-border-color);
-  transition: fill var(--main-transition);
+.customers-icon {
+  fill: currentColor;
 }
 
-.customers-item:hover .customers-item-link,
-.customers-item-link:focus .customers-item-link {
+.customers-item-link:hover,
+.customers-item-link:focus {
   border-color: var(--effect-second-color);
-}
-
-.customers-item-link:hover svg,
-.customers-item-link:focus svg {
-  fill: var(--effect-second-color);
+  color: var(--effect-second-color);
 }
 
 .portfolio-btn {
@@ -396,7 +408,7 @@ a {
   border: 1px solid var(--main-border-color);
   border-radius: 4px;
   transition: color var(--main-transition),
-    background-color var(--main-transition), border var(--main-transition),
+    background-color var(--main-transition), border-color var(--main-transition),
     box-shadow var(--main-transition);
 }
 
@@ -445,20 +457,17 @@ a {
   overflow: hidden;
 }
 
-.popup {
-  position: absolute;
-  height: 100%;
-  background-color: var(--logo-color);
-  top: 0;
-  left: 0;
-  padding: 40px 32px 0 32px;
-  transform: translateY(100%);
-  transition: transform var(--main-transition);
-}
-
 .popup-text {
+  position: absolute;
+  top: 0;
   text-align: center;
   color: var(--effect-main-color);
+  background-color: var(--logo-color);
+  padding: 40px 32px;
+  height: 100%;
+  width: 100%;
+  transform: translateY(100%);
+  transition: transform var(--main-transition);
 }
 
 .examples-links {
@@ -471,8 +480,8 @@ a {
     0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
 }
 
-.examples-links:hover .popup,
-.examples-links:focus .popup {
+.examples-links:hover .popup-text,
+.examples-links:focus .popup-text {
   transform: translateY(0);
 }
 
@@ -487,7 +496,7 @@ a {
 
 .modal {
   width: 408px;
-  height: 584px;
+  min-height: 584px;
   background-color: #fcfcfc;
   border-radius: 4px;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
@@ -504,6 +513,10 @@ a {
 }
 
 .modal-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
   width: 24px;
   height: 24px;
   position: absolute;
@@ -513,6 +526,19 @@ a {
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
   cursor: pointer;
+  transition: background-color var(--main-transition),
+    border var(--main-transition);
+}
+
+.modal-btn:hover,
+.modal-btn:focus {
+  background-color: var(--effect-second-color);
+  border: none;
+  fill: var(--second-color);
+}
+
+.button-close-icon {
+  transition: fill var(--main-transition);
 }
 
 .is-hidden {
@@ -521,17 +547,19 @@ a {
   pointer-events: none;
 }
 
-.footer-main-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  gap: 120px;
-}
-
 .footer {
   background: var(--highest-color);
   padding-top: 100px;
   padding-bottom: 100px;
+}
+
+.footer-main-container {
+  display: flex;
+  align-items: baseline;
+}
+
+.footer-container {
+  margin-right: 120px;
 }
 
 .footer-logo {
@@ -562,14 +590,23 @@ a {
   gap: 16px;
 }
 
+.footer-soc-item {
+  width: 40px;
+  height: 40px;
+}
+
 .footer-soc-text {
+  font-weight: 500;
   margin-bottom: 16px;
+  color: var(--second-color);
 }
 
 .footer-soc-link {
-  width: 40px;
-  height: 40px;
-  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
   background-color: var(--logo-color);
   border-radius: 50%;
   fill: var(--effect-main-color);

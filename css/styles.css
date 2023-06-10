@@ -144,7 +144,7 @@ a {
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: 0.02em;
-  color: var(--effect-second-color);
+  color: var(--main-color);
   padding-top: 24px;
   padding-bottom: 24px;
   transition: color var(--main-transition);
@@ -152,6 +152,7 @@ a {
 
 .active {
   position: relative;
+  color: var(--effect-second-color);
 }
 
 .active::after {
@@ -316,7 +317,7 @@ a {
     0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
 }
 
-.about-us-item:hover .soc-link-item,
+.soc-link-item:hover,
 .soc-link-item:focus {
   background-color: var(--effect-second-color);
 }
